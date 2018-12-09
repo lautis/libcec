@@ -182,7 +182,7 @@ void CSLCommandHandler::HandleVendorCommandPowerOn(const cec_command &command, b
     device->SetPowerStatus(CEC_POWER_STATUS_IN_TRANSITION_STANDBY_TO_ON);
     device->TransmitPowerState(command.initiator, true);
 
-    CEvent::Sleep(2000);
+    CEvent::Sleep(500);
     device->SetPowerStatus(CEC_POWER_STATUS_ON);
     device->TransmitPowerState(command.initiator, false);
     device->TransmitPhysicalAddress(false);
