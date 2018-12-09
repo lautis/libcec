@@ -170,9 +170,9 @@ void CSLCommandHandler::HandleVendorCommandPowerOn(const cec_command &command, b
   CCECBusDevice *device = m_processor->GetPrimaryDevice();
   if (device)
   {
-    bool wasActive = device->IsActiveSource();
+    bool wasActive = false; // device->IsActiveSource();
     SetSLInitialised();
-    device->MarkAsActiveSource();
+    device->MarkAsActiveSource(); // ?
     device->SetPowerStatus(CEC_POWER_STATUS_IN_TRANSITION_STANDBY_TO_ON);
     device->TransmitPowerState(command.initiator, true);
 
@@ -181,8 +181,8 @@ void CSLCommandHandler::HandleVendorCommandPowerOn(const cec_command &command, b
     device->TransmitPowerState(command.initiator, false);
     device->TransmitPhysicalAddress(false);
 
-    if (!wasActive || activateSource)
-      ActivateSource();
+    //if (!wasActive || activateSource)
+    //  ActivateSource();
   }
 }
 void CSLCommandHandler::HandleVendorCommandPowerOnStatus(const cec_command &command)
