@@ -147,12 +147,6 @@ void CSLCommandHandler::HandleVendorCommandSLInit(const cec_command &command)
   CCECBusDevice* dev = m_processor->GetDevice(command.destination);
   if (dev && dev->IsHandledByLibCEC())
   {
-    if (!dev->IsActiveSource())
-    {
-      dev->SetPowerStatus(CEC_POWER_STATUS_STANDBY);
-      dev->TransmitPowerState(command.initiator, true);
-    }
-
     TransmitVendorCommandSLAckInit(command.destination, command.initiator);
   }
 }
@@ -198,9 +192,9 @@ void CSLCommandHandler::HandleVendorCommandPowerOnStatus(const cec_command &comm
     CCECBusDevice *device = m_processor->GetPrimaryDevice();
     if (device)
     {
-      device->SetPowerStatus(CEC_POWER_STATUS_IN_TRANSITION_STANDBY_TO_ON);
-      device->TransmitPowerState(command.initiator, true);
-      device->SetPowerStatus(CEC_POWER_STATUS_ON);
+      //device->SetPowerStatus(CEC_POWER_STATUS_IN_TRANSITION_STANDBY_TO_ON);
+      //device->TransmitPowerState(command.initiator, true);
+      device->SetPowerStatus(CEC_POWER_STATUS_STANDBY);
     }
   }
 }
